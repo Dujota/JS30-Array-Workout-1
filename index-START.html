@@ -56,7 +56,7 @@
     const ordered = inventors.sort( (a,b) => a.year > b.year ? 1: -1);
 
     // const ordered = inventors.sort(function (a, b) {
-    //   if(a.year > b.yea){
+    //   if(a.year > b.year){
     //     return 1;
     //   }else {
     //     return -1;
@@ -76,9 +76,37 @@
     console.log(totalYears);
 
     // 5. Sort the inventors by years lived
+    const oldest = inventors.sort( function (a,b) {
+      const lastGuy = a.passed - a.year;
+      const nextGuy = b.passed - b.year;
+      // ternary Operator
+      return lastGuy > nextGuy? -1 : 1;
+
+      // long solution using if statement
+      // if (lastGuy > nextGuy)
+      // {
+      //   return -1;
+      // } else {
+      //   return 1;
+      // }
+    });
+
+    console.table(oldest);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+      // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+      const category = document.querySelector('.mw-category'); //select the wrapper on the page
+      const links = Array.from(category.querySelectorAll('a')); // can call on any exisiting dom element, not just te document, that's why we using category to look up the links inside it
+
+      // change links to an array so we can use map, can wrap in a Array.from()
+      // or use a spread [...category.querySelectorAll('a')];
+
+
+// can indent as long as prefixed with dot to help keep it readable
+      const de = links
+                  .map(link => link.textContent)
+                  .filter(streetName => streetName.includes('de'));  
 
 
     // 7. sort Exercise
