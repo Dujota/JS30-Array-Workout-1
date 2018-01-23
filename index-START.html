@@ -92,29 +92,41 @@
     });
 
     console.table(oldest);
-
-    // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-      // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
-      const category = document.querySelector('.mw-category'); //select the wrapper on the page
-      const links = Array.from(category.querySelectorAll('a')); // can call on any exisiting dom element, not just te document, that's why we using category to look up the links inside it
-
-      // change links to an array so we can use map, can wrap in a Array.from()
-      // or use a spread [...category.querySelectorAll('a')];
-
-
-// can indent as long as prefixed with dot to help keep it readable
-      const de = links
-                  .map(link => link.textContent)
-                  .filter(streetName => streetName.includes('de'));  
-
-
+//
+//     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+//       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+//
+//       const category = document.querySelector('.mw-category'); //select the wrapper on the page
+//       const links = Array.from(category.querySelectorAll('a')); // can call on any exisiting dom element, not just te document, that's why we using category to look up the links inside it
+//
+//       // change links to an array so we can use map, can wrap in a Array.from()
+//       // or use a spread [...category.querySelectorAll('a')];
+//
+//
+// // can indent as long as prefixed with dot to help keep it readable
+//       const de = links
+//                   .map(link => link.textContent)
+//                   .filter(streetName => streetName.includes('de'));
+//
+//
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+
+    const alpha = people.sort((lastOne, nextOne) => {
+      const [aLast, aFirst] = lastOne.split(', '); // deconstructed array, we specify the variable to be called inside the array
+      const [bLast, bFirst] = nextOne.split(', ');
+
+      return aLast > bLast ? 1 : -1;
+
+    });
+    console.log(alpha);
+//
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+
+    sum = data.reduce((previous, current) => {}, 0)
 
   </script>
 </body>
